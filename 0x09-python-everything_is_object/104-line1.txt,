@@ -1,0 +1,5 @@
+104-line1.txt: One int object with the value of 1 is created.
+104-line2.txt: No new int object is created. The existing int object with the value of 1024 is reused for both variables.
+104-line3.txt: Yes, the int object pointed by a is deleted.
+104-line4.txt: No, the int object pointed by b is not deleted, as there is still a reference to it.
+104-line5.txt: One int object with the value of 1024 is created when c is assigned.
