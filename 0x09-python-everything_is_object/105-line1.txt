@@ -1,0 +1,14 @@
+#!/usr/bin/python3
+
+# Question 1
+a = 1
+b = 1
+
+# Question 2
+a = 1
+b = 1
+# Before the execution of line 2, 2 int objects have been created and are still in memory
+print("I")
+print("Love")
+print("Python")
+
