@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# This script defines a function that loads a JSON object from a file.
+
 import json
 
 def load_from_json_file(filename):
