@@ -1,42 +1,88 @@
 #!/usr/bin/python3
-"""Module that contains a Square class that inherits from Rectangle class"""
-from models.rectangle import Rectangle
+"""Module that contains a rectangle"""
 
-
-class Square(Rectangle):
-    """A square class"""
-
-    def __init__(self, size, x=0, y=0, id=None):
-        """Initializes a square instance"""
-        super().__init__(size, size, x, y, id)
-
-    def __str__(self):
-        """Returns a string representation of the square"""
-        return "[Square] ({}) {}/{} - {}".format(
-            self.id, self.x, self.y, self.width)
+class Rectangle(Base):
+    """Class that represents a rectangle."""
+    def __init__(self, width, height, x=0, y=0, id=None):
+        """Constructor method."""
+        super().__init__(id)
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
     @property
-    def size(self):
-        """Getter method for size"""
-        return self.width
+    def width(self):
+        """Getter method for width."""
+        return self.__width
 
-    @size.setter
-    def size(self, value):
-        """Setter method for size"""
-        self.width = value
-        self.height = value
+    @width.setter
+    def width(self, value):
+        """Setter method for width."""
+        self.integer_validator("width", value)
+        self.__width = value
+
+    @property
+    def height(self):
+        """Getter method for height."""
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        """Setter method for height."""
+        self.integer_validator("height", value)
+        self.__height = value
+
+    @property
+    def x(self):
+        """Getter method for x."""
+        return self.__x
+
+    @x.setter
+    def x(self, value):
+        """Setter method for x."""
+        self.integer_validator("x", value)
+        self.__x = value
+
+    @property
+    def y(self):
+        """Getter method for y."""
+        return self.__y
+
+    @y.setter
+    def y(self, value):
+        """Setter method for y."""
+        self.integer_validator("y", value)
+        self.__y = value
+
+    def area(self):
+        """Method that returns the area of the rectangle."""
+        return self.width * self.height
+
+    def display(self):
+        """Method that prints in stdout the Rectangle instance with the character #."""
+        for i in range(self.y):
+            print()
+        for i in range(self.height):
+            print(" " * self.x, end="")
+            print("#" * self.width)
+
+    def __str__(self):
+        """Method that returns a string representation of the Rectangle instance."""
+        return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(self.id, self.x, self.y, self.width, self.height)
 
     def update(self, *args, **kwargs):
-        """Updates the square attributes"""
+        """Method that updates the attributes of the Rectangle instance."""
+        attrs = ["id", "width", "height", "x", "y"]
         if args:
-            attrs = ["id", "size", "x", "y"]
-            for attr, value in zip(attrs, args):
-                setattr(self, attr, value)
+            for i in range(len(args)):
+                setattr(self, attrs[i], args[i])
         else:
-            for attr, value in kwargs.items():
-                setattr(self, attr, value)
+            for k, v in kwargs.items():
+                if k in attrs:
+                    setattr(self, k, v)
 
     def to_dictionary(self):
-        """Returns the dictionary representation of the square"""
-        return {"id": self.id, "size": self.size, "x": self.x, "y": self.y}
+        """Method that returns the dictionary representation of a Rectangle instance."""
+        return {"id": self.id, "width": self.width, "height": self.height, "x": self.x, "y": self.y}
 
