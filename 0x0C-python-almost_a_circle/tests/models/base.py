@@ -7,11 +7,9 @@ import json
 
 
 class Base:
-    """A base class for other shapes"""
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """Initialize a new Base object"""
         if id is not None:
             self.id = id
         else:
@@ -20,8 +18,15 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Return the JSON string representation of list_dictionaries"""
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
-        return json.dumps(list_dictionaries)
+        else:
+            return json.dumps(list_dictionaries)
+
+    @staticmethod
+    def from_json_string(json_string):
+        if json_string is None or len(json_string) == 0:
+            return []
+        else:
+            return json.loads(json_string)
 
